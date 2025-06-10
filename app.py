@@ -127,7 +127,7 @@ def maybe_update_records():
     current_time = time.time()
     
     with data_lock:
-        if current_time - last_update_time >= 60:  # 1 minute
+        if current_time - last_update_time >= 600:  # 10 minute
             trade_pairs = generate_trade_pairs(15)  # 15 pairs → 30 trades
             last_sent_records = trade_pairs.copy()
             last_update_time = current_time
