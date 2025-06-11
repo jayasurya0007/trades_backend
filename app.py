@@ -85,7 +85,7 @@ def generate_trade_pairs(count=15):
 
     for i in range(count):
         ticker_info = random.choice(ticker_data)
-        quantity = random.randint(1, 100) * 10
+        quantity = random.randint(1, 500) 
         broker1 = f"BKR{random.randint(1, 15):03d}"
         broker2 = f"BKR{random.randint(1, 15):03d}"
         while broker2 == broker1:
@@ -133,8 +133,7 @@ def maybe_update_records():
     """Check if we should update records (every 10 minutes)"""
     global last_sent_records, last_update_time, trade_pairs
     current_time = time.time()
-    UPDATE_INTERVAL_SECONDS = 600
-
+    UPDATE_INTERVAL_SECONDS = 180
     with data_lock:
         if current_time - last_update_time >= UPDATE_INTERVAL_SECONDS:
             trade_pairs = generate_trade_pairs(15)
